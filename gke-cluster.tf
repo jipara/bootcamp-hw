@@ -1,4 +1,6 @@
 resource "google_container_cluster" "gke-cluster" {
+  provider = google
+  
   name               = "${var.app_name}-cluster"
   location           = var.gcp_zone_1
   initial_node_count = 1
