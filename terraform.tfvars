@@ -1,4 +1,4 @@
-project_id   = "(genuine-vent-308402)" # Enter your project ID here.
+project_id   = "genuine-vent-308402" # Enter your project ID here.
 gcp_region_1 = "us-central1"
 gcp_zone_1   = "us-central1-b"
 

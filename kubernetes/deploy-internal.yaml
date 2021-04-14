@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: events-internal
+  name: events-internal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: events-internal
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: events-internal
+    spec:
+      containers:
+      - image: jipara/internal
+        name: internal-image
+        ports:
+        - containerPort: 8082
+        resources: {}
+status: {}
