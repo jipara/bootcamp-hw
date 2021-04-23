@@ -1,0 +1,5 @@
+sonar.projectKey=jenkins
+sonar.login=admin
+sonar.password=admin1
+sonar.sources=/var/jenkins_home/worksapce/sonarQube
+sonar.host.url=http://104.197.202.48:9000

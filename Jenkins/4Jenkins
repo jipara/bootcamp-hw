@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage('Get source code from GitHub') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/jipara/bootcamp-hw.git'
+            }
+        }
+        stage('Unit Test') {
+            environment {
+                PORT = 8081
+            }
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Connect to Kebernetes cluster') {
+            steps {
+                sh 'gcloud container clusters get-credentials kubernetes-bootcamp-cluster --zone us-central1-b --project genuine-vent-308402'
+            }
+        }
+        stage('If deployment does not exist, create deployment on Kubernetes cluster') {
+            steps {
+                sh 'kubectl create -f $JENKINS_HOME/workspace/test/bootcamp-hw/kubernetes/deploy-exteranl.yaml'
+            }
+        }
+         stage('Deploy for production') {
+            steps {
+                sh 'kubectl get deploy | grep deploy-external'  
+            }
+         }    
+    }
+}
