@@ -1,0 +1,2 @@
+1)gcloud builds submit --tag gcr.io/genuine-vent-308402/events-internal:v1
+2) deploy all apps into kubernetes cluster

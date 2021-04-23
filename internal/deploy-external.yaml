@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: events-external
+  name: events-external
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: events-external
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: events-external
+    spec:
+      containers:
+      - image: gcr.io/swift-arcadia-272518/events-external:v1.0.0
+        name: events-external
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SERVER
+          value: "http://events-internal:8082"
